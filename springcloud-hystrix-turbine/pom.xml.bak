@@ -6,7 +6,7 @@
 	<groupId>cloud</groupId>
 	<artifactId>springcloud-hystrix-turbine</artifactId>
 	<version>1.0.0</version>
-	<name>springcloud-hystrix-turbine</name>	
+	<name>cloud-hystrix-turbine</name>	
 	<packaging>jar</packaging>
 	 <parent>
         <groupId>org.springframework.cloud</groupId>

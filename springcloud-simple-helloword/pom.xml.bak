@@ -1,13 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
-	<groupId>cloud</groupId>
-	<artifactId>springcloud-hystrix-dashboard</artifactId>
-	<version>1.0.0</version>
-	<name>springcloud-hystrix-dashboard</name>	
-	<packaging>jar</packaging>
+	<!-- spring boot基本环境 -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -23,7 +17,14 @@
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
-	</dependencyManagement>	
+	</dependencyManagement>
+
+	<groupId>spring.boot</groupId>
+	<artifactId>springcloud-simple-helloword</artifactId>
+	<version>0.0.1</version>
+	<packaging>jar</packaging>
+	<name>cloud-simple-helloword</name>
+
 	<repositories>
 		<repository>
 			<snapshots>
@@ -40,25 +41,26 @@
 			<name>Public Repositories</name>
 			<url>http://10.0.12.207:8081/nexus/content/groups/public/</url>
 		</pluginRepository>
-	</pluginRepositories>	
-	<dependencies>	
+	</pluginRepositories>
+
+	<dependencies>
+		<!--web应用基本环境配置 -->
 		<dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter</artifactId>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!--监控基本环境配置 -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
-		</dependency>		
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>				
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<defaultGoal>compile</defaultGoal>
 	</build>
-
 </project>

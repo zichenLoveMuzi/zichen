@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>springcloud-config-serve</name>
-	<description>springcloud-config-server</description>
+	<description>cloud-config-server</description>
 
 	<parent>
 		<groupId>org.springframework.cloud</groupId>
