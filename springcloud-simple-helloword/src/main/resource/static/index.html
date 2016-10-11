@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>input</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/json2.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+
+function add(){
+	//添加&修改规则,根据有无_id参数判断是添加还是修改
+	var drl = 'package chengqu_ld import java.util.HashMap; dialect "mvel" rule "demo" when $m : HashMap(inputButtonId == \'btn1\' && (inputRoleId == \'1\' || inputRoleId == \'2\') && businessData.name == \'demo\' && businessData.count > 5) then $m.outputRoleId = 2; $m.outputNextTaskId = \'taskN\'; end';
+	doJsonRequest("/rules", {_id:"57fb6658dd80a5185ce57da7",caseKey:"chengquld",ruleCode:"demo",ruleName:"测试规则",drl:drl}, function(data) {
+		if(data.result){
+			alert("OK");
+		}
+	},null,"POST");
+}
+
+function del(){
+	//删除规则
+	doJsonRequest("/rules", ["57fb662edd80a5185ce57da6"], function(data) {
+		if(data.result){
+			alert("OK");
+		}
+	},null,"DELETE");
+}
+function rulesload(){
+	//加载规则列表，/rules/caseKey/id，两个参数默认为ALL
+	doJsonRequest("/rules/ALL/ALL", null, function(data) {
+		if(data.result){
+			alert($.toJSON(data.data));
+		}
+	}, null, "GET");
+}
+
+function rulelistsload(){
+	//按钮加载规则下拉列表
+	doJsonRequest("/rulelists/caseKey", null, function(data) {
+		if(data.result){
+			alert($.toJSON(data.data));
+		}
+	}, null, "GET");
+}
+
+function calculation(){
+	//规则过滤
+	/*
+		================================规则过滤的输入条件======================================
+		{rules=[57fb6658dd80a5185ce57da7], data={inputButtonId=btn1, inputRoleId=1, businessData={name=demo, count=6}}}
+		================================规则打印======================================
+		package chengqu_ld import java.util.HashMap; dialect "mvel" rule "demo" when $m : HashMap(inputButtonId == 'btn1' && (inputRoleId == '1' || inputRoleId == '2') && businessData.name == 'demo' && businessData.count > 5) then $m.outputRoleId = 2; $m.outputNextTaskId = 'taskN'; end
+		================================规则过滤的输出======================================
+		[{outputNextTaskId=taskN, ruleId=57fb6658dd80a5185ce57da7, outputRoleId=2}]
+	**/
+	doJsonRequest("/calculation", {rules:['57fb6658dd80a5185ce57da7'],data:{inputButtonId:'btn1',inputRoleId:'1',businessData:{name:'demo',count:6}}}, function(data) {
+		if(data.result){
+			alert($.toJSON(data.data));
+		}
+	},null,"POST");
+}
+
+
+</script>
+</head>
+<body>
+<button onclick="add()">增加</button>
+<br/><br/>
+<button onclick="del()">删除</button>
+<br/><br/>
+<button onclick="rulesload()">加载</button>
+<br/><br/>
+<button onclick="rulelistsload()">加载下拉框</button>
+<br/><br/>
+<button onclick="calculation()">过滤规则</button>
+</body>
+</html>

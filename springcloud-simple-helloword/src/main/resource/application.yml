@@ -1,0 +1,18 @@
+# Server settings (ServerProperties)
+server:
+  port: 8089
+  sessionTimeout: 30
+  contextPath: /lr
+
+# Tomcat specifics
+tomcat:
+  accessLogEnabled: false
+  protocolHeader: x-forwarded-proto
+  remoteIpHeader: x-forwarded-for
+  basedir:
+  backgroundProcessorDelay: 30 # secs
+
+# MongoDB Configuration
+spring.data.mongodb.database: dtoa
+spring.data.mongodb.uri: mongodb://121.30.209.26:8112
+spring.data.mongodb.custom.service: 121.30.209.26:8112
