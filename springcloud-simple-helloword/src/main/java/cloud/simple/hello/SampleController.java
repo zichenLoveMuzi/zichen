@@ -86,7 +86,7 @@ public class SampleController  {
      	ruleService.saveRules(rule);
      }
      
-      @RequestMapping(value = "/rules",method=RequestMethod.DELETE)
+      @RequestMapping(value = "/delrules",method=RequestMethod.POST)
       @ApiOperation(value="删除规则", notes="根据ID集合删除相应规则")
       @ApiImplicitParam(name = "ids", value = "规则ID集合", required = true, dataType = "List")
       public void delRules(@RequestBody List<String> ids) {

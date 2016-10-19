@@ -12,8 +12,9 @@
 
 function add(){
 	//添加&修改规则,根据有无_id参数判断是添加还是修改
-	var drl = 'package chengqu_ld import java.util.HashMap; dialect "mvel" rule "demo" when $m : HashMap(inputButtonId == \'btn1\' && (inputRoleId == \'1\' || inputRoleId == \'2\') && businessData.name == \'demo\' && businessData.count > 5) then $m.outputRoleId = 2; $m.outputNextTaskId = \'taskN\'; end';
-	doJsonRequest("/rules", {_id:"57fb6658dd80a5185ce57da7",caseKey:"chengquld",ruleCode:"demo",ruleName:"测试规则",drl:drl}, function(data) {
+	var drl = 'package HG3001_checkexception import java.util.HashMap; dialect "mvel" rule "rule001" when $m:HashMap(businessData.isSpecialRequire == "false" && businessData.isContraband == "false" && businessData.isViolationProperty == "false")  then $m.outputRoleId = "005";$m.outputNextTaskId = "t15"; end ';
+	drl = 'package HG3001_checkexception import java.util.HashMap; dialect "mvel"  rule "rule002" when $m:HashMap(businessData.isSpecialRequire == "false" && businessData.isContraband == "false" && businessData.isViolationProperty == "true") then $m.outputNextTaskId = "t20";$m.outputRoleId = "004"; end ';
+	doJsonRequest("/rules", {caseKey:"HG3001",ruleCode:"rule002",ruleName:"测试规则3",drl:drl}, function(data) {
 		if(data.result){
 			alert("OK");
 		}
@@ -56,7 +57,15 @@ function calculation(){
 		================================规则过滤的输出======================================
 		[{outputNextTaskId=taskN, ruleId=57fb6658dd80a5185ce57da7, outputRoleId=2}]
 	**/
-	doJsonRequest("/calculation", {rules:['57fb6658dd80a5185ce57da7'],data:{inputButtonId:'btn1',inputRoleId:'1',businessData:{name:'demo',count:6}}}, function(data) {
+	var dto = {
+			"data":
+			{	"currentRoleId":"002",
+				"inputRoleId":"002",
+				"businessData":{"appId":"296","userId":"10002","roleId":"002","orgId":3,"orgName":"北京海关","businessType":"HG3001_checkexception","businessTypeText":"查验异常","url":"http://localhost:9999/oacloud/business/document/HG3001/checkexception.html","isSpecialRequire":"false","isNoFormData":"false","isContraband":"false","isViolationProperty":"false","isResult":"false","serialNumber":"20162000024","routingRule":["5805c496f58609016c98d56f","5806f56dbfcdfc112884ebbb","5807068ebfcdfc112884ebbc","58070860bfcdfc112884ebbd"],"transactional":"pending","_id":{"counter":3041255,"date":{"date":19,"day":3,"hours":14,"minutes":16,"month":9,"seconds":0,"time":1476857760000,"timezoneOffset":-480,"year":116},"machineIdentifier":15604900,"processIdentifier":11124,"time":1476857760000,"timeSecond":1476857760,"timestamp":1476857760},"createTime":1476857760162,"formatCreateTime":"2016-10-19 14:16:00","updateTime":1476857760162,"formatUpdateTime":"2016-10-19 14:16:00"},"inputButtonId":"58047aeff586090590de0b74"
+			},
+			"rules":["58071494dd80a52a60e4e532","580714a3dd80a52a60e4e533"]
+		}
+	doJsonRequest("/calculation",dto, function(data) {
 		if(data.result){
 			alert($.toJSON(data.data));
 		}

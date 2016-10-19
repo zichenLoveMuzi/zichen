@@ -155,6 +155,9 @@ public class RuleService {
 
 			output.put("outputNextTaskId", message.get("outputNextTaskId"));
 			output.put("outputRoleId", message.get("outputRoleId"));
+			//清空输出数据，todo... Tips：这里以后要优化一下，输出使用新的Map去操作，不要污染输入Map edit by chunzhao.li 2016.10.19
+			message.remove("outputNextTaskId");
+			message.remove("outputRoleId");
 			return output;
 		}else{
 			return null;

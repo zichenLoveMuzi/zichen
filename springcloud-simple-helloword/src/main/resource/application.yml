@@ -3,6 +3,8 @@ server:
   port: 8089
   sessionTimeout: 30
   contextPath: /lr
+  
+spring.application.name: ruleengine
 
 # Tomcat specifics
 tomcat:
@@ -16,3 +18,7 @@ tomcat:
 spring.data.mongodb.database: dtoa
 spring.data.mongodb.uri: mongodb://121.30.209.26:8112
 spring.data.mongodb.custom.service: 121.30.209.26:8112
+
+# eureka Configuration
+eureka.client.serviceUrl.defaultZone: http://localhost:8761/eureka/
+eureka.instance.preferIpAddress: true

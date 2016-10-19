@@ -10,6 +10,7 @@
 	<properties>
 		<drools.version>6.4.0.Final</drools.version>
 	</properties>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -93,6 +94,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+		<!-- 服务注册与发现 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
 		<!-- mongodb -->
 		<dependency>
 			<groupId>org.mongodb</groupId>
@@ -109,7 +115,7 @@
 			<artifactId>spring-data-commons</artifactId>
 			<version>1.10.0.RELEASE</version>
 		</dependency>
-		
+
 		<!-- swagger风格支持，疑似有侵入式漏洞，生产环境不能使用 -->
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -123,34 +129,10 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<!-- <plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins> -->
-		
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
