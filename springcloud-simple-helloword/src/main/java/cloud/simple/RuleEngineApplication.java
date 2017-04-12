@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.web.context.request.async.DeferredResult;
@@ -38,7 +37,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 */
 @SpringBootApplication
 @EnableSwagger2
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 public class RuleEngineApplication {
 
 	@Autowired

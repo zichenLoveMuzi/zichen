@@ -153,11 +153,14 @@ public class RuleService {
 					kSession.dispose();
 			}
 
-			output.put("outputNextTaskId", message.get("outputNextTaskId"));
-			output.put("outputRoleId", message.get("outputRoleId"));
+//			output.put("outputNextTaskId", message.get("outputNextTaskId"));
+//			output.put("outputRoleId", message.get("outputRoleId"));
+//			output.put("outputResult", message.get("outputResult"));
+			output.putAll(message);
 			//清空输出数据，todo... Tips：这里以后要优化一下，输出使用新的Map去操作，不要污染输入Map edit by chunzhao.li 2016.10.19
 			message.remove("outputNextTaskId");
 			message.remove("outputRoleId");
+			message.remove("outputResult");
 			return output;
 		}else{
 			return null;
